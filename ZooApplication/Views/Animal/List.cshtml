@@ -18,7 +18,6 @@
         @Html.ActionLink("Next", "List", new { PageNum = NextPage })
     }
 </div>
-<div>IsAdmin:@Model.IsAdmin</div>
 <div>
     @foreach (var animal in Model.Animals)
     {
@@ -36,8 +35,9 @@
                 }
 
                 <div class="imagecontainer">
-                    <img src="@pic" alt="@alt" />
-
+                    <a data-lightbox="animal-@animal.AnimalID" href="@pic" data-title="@alt">
+                        <img src="@pic" alt="@alt" />
+                    </a>
                 </div>
                 <div class="recordtitle">
                     <a href="/Animal/Details/@animal.AnimalID">@animal.AnimalName (@animal.SpeciesName)</a>

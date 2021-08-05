@@ -38,7 +38,7 @@ namespace ZooApplication.Controllers
             {
                 KeeperID = k.KeeperID,
                 KeeperFirstName = k.KeeperFirstName,
-                KeeperLastName=k.KeeperLastName
+                KeeperLastName = k.KeeperLastName
             }));
 
             return Ok(KeeperDtos);
@@ -60,8 +60,8 @@ namespace ZooApplication.Controllers
         public IHttpActionResult ListKeepersForAnimal(int id)
         {
             List<Keeper> Keepers = db.Keepers.Where(
-                k=>k.Animals.Any(
-                    a=>a.AnimalID==id)
+                k => k.Animals.Any(
+                    a => a.AnimalID == id)
                 ).ToList();
             List<KeeperDto> KeeperDtos = new List<KeeperDto>();
 
@@ -157,6 +157,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles="Admin")]
         public IHttpActionResult UpdateKeeper(int id, Keeper Keeper)
         {
             if (!ModelState.IsValid)
@@ -206,6 +207,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [ResponseType(typeof(Keeper))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddKeeper(Keeper Keeper)
         {
             if (!ModelState.IsValid)
@@ -234,6 +236,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [ResponseType(typeof(Keeper))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteKeeper(int id)
         {
             Keeper Keeper = db.Keepers.Find(id);

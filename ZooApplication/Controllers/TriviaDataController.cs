@@ -129,6 +129,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles="Admin")]
         public IHttpActionResult UpdateTrivia(int id, Trivia Trivia)
         {
             if (!ModelState.IsValid)
@@ -178,6 +179,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [ResponseType(typeof(Trivia))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddTrivia(Trivia Trivia)
         {
             if (!ModelState.IsValid)
@@ -206,6 +208,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [ResponseType(typeof(Trivia))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteTrivia(int id)
         {
             Trivia Trivia = db.Trivias.Find(id);

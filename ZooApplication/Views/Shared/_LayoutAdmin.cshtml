@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - ADMIN ZooApp</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="~/Content/lightbox.css" />
+    <script src="https://cdn.tiny.cloud/1/kkfp94wk8lnc4hvz94kuh5ihdmkpnwyowt06nfdlocjw8zbv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>
 <body>
@@ -40,7 +42,16 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/lightbox.js"></script>
+    <script>
+        //rich text WYSIWYG editor
+        //documentation: https://www.tiny.cloud/docs/quick-start/
+        tinymce.init({
+            selector: 'textarea'
+        });
+    </script>
 </body>
 </html>

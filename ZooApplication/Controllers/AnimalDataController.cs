@@ -42,6 +42,7 @@ namespace ZooApplication.Controllers
                 AnimalWeight = a.AnimalWeight,
                 AnimalHasPic = a.AnimalHasPic,
                 PicExtension = a.PicExtension,
+                AnimalBio = a.AnimalBio,
                 SpeciesID = a.Species.SpeciesID,
                 SpeciesName = a.Species.SpeciesName
             }));
@@ -74,6 +75,7 @@ namespace ZooApplication.Controllers
                 AnimalWeight = a.AnimalWeight,
                 AnimalHasPic = a.AnimalHasPic,
                 PicExtension = a.PicExtension,
+                AnimalBio = a.AnimalBio,
                 SpeciesID = a.Species.SpeciesID,
                 SpeciesName = a.Species.SpeciesName
             }));
@@ -161,7 +163,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [HttpPost]
         [Route("api/AnimalData/AssociateAnimalWithKeeper/{animalid}/{keeperid}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AssociateAnimalWithKeeper(int animalid, int keeperid)
         {
             
@@ -200,7 +202,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [HttpPost]
         [Route("api/AnimalData/UnAssociateAnimalWithKeeper/{animalid}/{keeperid}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UnAssociateAnimalWithKeeper(int animalid, int keeperid)
         {
 
@@ -249,6 +251,7 @@ namespace ZooApplication.Controllers
                 AnimalWeight = Animal.AnimalWeight,
                 AnimalHasPic = Animal.AnimalHasPic,
                 PicExtension= Animal.PicExtension,
+                AnimalBio=Animal.AnimalBio,
                 SpeciesID = Animal.Species.SpeciesID,
                 SpeciesName = Animal.Species.SpeciesName
             };
@@ -278,7 +281,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateAnimal(int id, Animal animal)
         { 
             if (!ModelState.IsValid)
@@ -329,6 +332,7 @@ namespace ZooApplication.Controllers
         /// https://stackoverflow.com/questions/28369529/how-to-set-up-a-web-api-controller-for-multipart-form-data
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UploadAnimalPic(int id)
         {
 
@@ -416,7 +420,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [ResponseType(typeof(Animal))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddAnimal(Animal animal)
         {
             if (!ModelState.IsValid)
@@ -445,7 +449,7 @@ namespace ZooApplication.Controllers
         /// </example>
         [ResponseType(typeof(Animal))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteAnimal(int id)
         {
             Animal animal = db.Animals.Find(id);

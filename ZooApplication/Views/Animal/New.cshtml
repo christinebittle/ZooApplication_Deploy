@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ZooApplication.Models.SpeciesDto>
+﻿@model ZooApplication.Models.ViewModels.UpdateAnimal
 
 @{
     ViewBag.Title = "Create";
@@ -7,15 +7,21 @@
 <h2>Create Animal</h2>
 <form action="/Animal/Create" method="POST">
     <div>
-        <label>Name:</label> <input type="text" name="AnimalName" />
+        <label>Name:</label> <input type="text" name="AnimalName" id="AnimalName" data-val="true" data-val-required="Please Enter a Name." />
+
+        @Html.ValidationMessageFor(model => model.SelectedAnimal.AnimalName, "", new { @class = "text-danger", data_valmsg_for = "AnimalName" })
     </div>
     <div>
-        <label>Weight (kg):</label> <input type="number" name="AnimalWeight" />
+        <label>Weight (kg):</label> <input type="number" name="AnimalWeight" data-val="true" data-val-required="Please Enter a Weight." />
+        @Html.ValidationMessageFor(model => model.SelectedAnimal.AnimalWeight, "", new { @class = "text-danger", data_valmsg_for = "AnimalWeight" })
     </div>
     <div>
-        <label>Species:</label> 
+        <label>Bio:</label> <textarea name="AnimalBio"></textarea>
+    </div>
+    <div>
+        <label>Species:</label>
         <select name="SpeciesID">
-            @foreach (var species in Model)
+            @foreach (var species in Model.SpeciesOptions)
             {
                 <option value="@species.SpeciesID">@species.SpeciesName</option>
 

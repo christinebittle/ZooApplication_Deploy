@@ -90,7 +90,7 @@ namespace ZooApplication.Controllers
             TicketDto SelectedTicket = response.Content.ReadAsAsync<TicketDto>().Result;
             ViewModel.SelectedTicket = SelectedTicket;
 
-            //Get Bookings for this ticket
+            //Get Bookings for this ticket - should be admin only
             url = "BookingData/ListBookingsForTicket/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<BookingDto> Bookings = response.Content.ReadAsAsync<IEnumerable<BookingDto>>().Result;
@@ -108,7 +108,8 @@ namespace ZooApplication.Controllers
         }
 
         // GET: Ticket/New
-        [Authorize]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             return View();
@@ -116,7 +117,8 @@ namespace ZooApplication.Controllers
 
         // POST: Ticket/Create
         [HttpPost]
-        [Authorize]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Ticket Ticket)
         {
             //validate request
@@ -149,7 +151,8 @@ namespace ZooApplication.Controllers
         }
 
         // GET: Ticket/Edit/5
-        [Authorize]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             string url = "TicketData/FindTicket/" + id;
@@ -160,7 +163,8 @@ namespace ZooApplication.Controllers
 
         // POST: Ticket/Update/5
         [HttpPost]
-        [Authorize]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Ticket Ticket)
         {
             //validate request
@@ -183,7 +187,8 @@ namespace ZooApplication.Controllers
         }
 
         // GET: Ticket/Delete/5
-        [Authorize]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "TicketData/FindTicket/" + id;
@@ -194,7 +199,8 @@ namespace ZooApplication.Controllers
 
         // POST: Ticket/Delete/5
         [HttpPost]
-        [Authorize]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             //validate request

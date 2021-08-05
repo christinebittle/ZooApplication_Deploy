@@ -161,7 +161,7 @@ namespace ZooApplication.Controllers
 
         //POST: Animal/Associate/{animalid}
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles="Admin")]
         public ActionResult Associate(int id, int KeeperID)
         {
             GetApplicationCookie();//get token credentials
@@ -179,7 +179,7 @@ namespace ZooApplication.Controllers
 
         //Get: Animal/UnAssociate/{id}?KeeperID={keeperID}
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult UnAssociate(int id, int KeeperID)
         {
             GetApplicationCookie();//get token credentials
@@ -202,9 +202,12 @@ namespace ZooApplication.Controllers
         }
 
         // GET: Animal/New
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
+            //need the animal DTO for validation
+            UpdateAnimal ViewModel = new UpdateAnimal();
+
             //information about all species in the system.
             //GET api/speciesdata/listspecies
 
@@ -212,12 +215,14 @@ namespace ZooApplication.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<SpeciesDto> SpeciesOptions = response.Content.ReadAsAsync<IEnumerable<SpeciesDto>>().Result;
 
-            return View(SpeciesOptions);
+            ViewModel.SpeciesOptions = SpeciesOptions;
+
+            return View(ViewModel);
         }
 
         // POST: Animal/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Animal animal)
         {
             GetApplicationCookie();//get token credentials
@@ -248,7 +253,7 @@ namespace ZooApplication.Controllers
         }
 
         // GET: Animal/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             UpdateAnimal ViewModel = new UpdateAnimal();
@@ -272,7 +277,7 @@ namespace ZooApplication.Controllers
 
         // POST: Animal/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Animal animal, HttpPostedFileBase AnimalPic)
         {
             GetApplicationCookie();//get token credentials   
@@ -311,7 +316,7 @@ namespace ZooApplication.Controllers
         }
 
         // GET: Animal/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "animaldata/findanimal/" + id;
@@ -322,7 +327,7 @@ namespace ZooApplication.Controllers
 
         // POST: Animal/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie();//get token credentials

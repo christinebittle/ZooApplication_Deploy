@@ -63,8 +63,17 @@ namespace ZooApplication.Controllers
         /// </example>
         [HttpGet]
         [ResponseType(typeof(BookingXTicketDto))]
+        [Authorize(Roles="Admin,Guest")]
         public IHttpActionResult ListTicketsForBooking(int id)
         {
+
+            Booking Booking = db.Bookings.Find(id);
+            //do not process if the (user is not an admin) and (the booking does not belong to the user)
+            bool isAdmin = User.IsInRole("Admin");
+            //Forbidden() isn't a natively implemented status like BadRequest()
+            if (!isAdmin && (Booking.UserID != User.Identity.GetUserId())) return StatusCode(HttpStatusCode.Forbidden);
+
+
             //can't directly access the ticket's bookings
             //access the bookingxticket bridging table,
             //joining the tickets in

@@ -24,6 +24,7 @@
         }
         <div><img style="display:block; max-width:100%;" alt="@Model.SelectedAnimal.AnimalName" src="@imageurl"/></div>
         <div>Weight: @Model.SelectedAnimal.AnimalWeight kg</div>
+        <div>Bio: @Html.Raw(Model.SelectedAnimal.AnimalBio)</div>
         <div>Species: @Model.SelectedAnimal.SpeciesName</div>
     </div>
     <div class="col-md-6 col-sm-12">

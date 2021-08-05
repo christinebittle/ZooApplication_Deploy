@@ -22,10 +22,15 @@
                 <input type="text" name="AnimalID" value="@Model.SelectedAnimal.AnimalID" />
             </div>
             <div>
-                <label>Name:</label> <input type="text" name="AnimalName" value="@Model.SelectedAnimal.AnimalName" />
+                <label>Name:</label> <input type="text" name="AnimalName" value="@Model.SelectedAnimal.AnimalName" data-val="true" data-val-required="Please Enter a Name." />
+                @Html.ValidationMessageFor(model => model.SelectedAnimal.AnimalName, "", new { @class = "text-danger", data_valmsg_for = "AnimalName" })
             </div>
             <div>
-                <label>Weight (kg):</label> <input type="number" name="AnimalWeight" value="@Model.SelectedAnimal.AnimalWeight" />
+                <label>Weight (kg):</label> <input type="number" name="AnimalWeight" value="@Model.SelectedAnimal.AnimalWeight" data-val="true" data-val-required="Please Enter a Weight." />
+                @Html.ValidationMessageFor(model => model.SelectedAnimal.AnimalWeight, "", new { @class = "text-danger", data_valmsg_for = "AnimalWeight" })
+            </div>
+            <div>
+                <label>Bio:</label> <textarea name="AnimalBio">@Model.SelectedAnimal.AnimalBio</textarea>
             </div>
             <div>
                 <label>Species ID:</label>
