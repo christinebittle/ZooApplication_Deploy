@@ -44,3 +44,10 @@ curl -H "Content-Type:application/json" -d @animal.json https://localhost:44324/
 - Create 'Guest', 'Admin' entries in AspNetRoles
 - Copy UserID from AspNetUsers table
 - Create entry between Guest Role x User Id, Admin Role x User Id in AspNetUserRoles bridging table
+
+
+References
+- [Previous Project Varsity](https://github.com/christinebittle/varsity_mvp)
+- [Previous Project PetGrooming](https://github.com/christinebittle/PetGroomingMVC)
+- [Previous Project BlogProject 7th iteration](https://github.com/christinebittle/BlogProject_7)
+- [Utilized Lightbox plugin by Lokesh Dhakar](https://lokeshdhakar.com/projects/lightbox2/)
