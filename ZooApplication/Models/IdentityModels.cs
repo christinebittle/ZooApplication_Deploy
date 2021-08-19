@@ -25,10 +25,21 @@ namespace ZooApplication.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        /*uncomment to use local connection instead*/
+        /*
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        */
+
+        /* AWS Connection*/
+
+        public ApplicationDbContext()
+            : base(AWSConnector.GetRDSConnectionString())
+        {
+        }
+
 
         //Add an animal entity to our system
         public DbSet<Animal> Animals { get; set; }

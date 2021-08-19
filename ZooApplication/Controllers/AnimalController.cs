@@ -28,7 +28,7 @@ namespace ZooApplication.Controllers
             };
 
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44324/api/");
+            client.BaseAddress = new Uri("zooapp.us-east-2.elasticbeanstalk.com/api/");
         }
 
         /// <summary>
