@@ -313,6 +313,7 @@
     <Content Include="Content\icons\loading.gif" />
     <Content Include="Content\icons\next.png" />
     <Content Include="Content\icons\prev.png" />
+    <Content Include="Content\Images\Animals\default.jpg" />
     <Content Include="Content\lightbox.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -338,6 +339,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include=".ebextensions\permissions.config" />
     <None Include="jsondata\animal.json" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -426,9 +428,7 @@
     <Content Include="Views\Trivia\New.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Images\Animals\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
